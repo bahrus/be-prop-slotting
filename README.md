@@ -14,7 +14,7 @@ Transfer values from light children to host.
 
 ... sets oMyCustomElement's href property to https://cnn.com at the moment when the hyperlink is slotted. 
 
-Add be-value-added enhancement to hyperlink anchor element, so that instead of updating the href, if the href is updated via the oHTMLAnchorElement.beEnhanced.beValueAdded.value, it will reflect to the hyperlink, as well as to oMyCustomEement's href property.
+Adds be-value-added enhancement to hyperlink anchor element, so that instead of updating the href, if the href is updated via the oHTMLAnchorElement.beEnhanced.beValueAdded.value, it will reflect to the hyperlink, as well as to oMyCustomElement's href property.
 
 ## Example 1b [TODO]
 
