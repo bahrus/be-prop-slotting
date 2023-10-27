@@ -33,7 +33,7 @@ Adds be-value-added enhancement to hyperlink anchor element, so that instead of 
 ```html
 <my-custom-element>
     #shadow
-        <slot name=inputEl be-be-prop-slotting='from value as number to numeric prop.
+        <slot name=inputEl be-prop-slotting='from value as number to numeric prop.
             From dataset:msg to stringProp.
         '></slot>
     <input type=number data-msg=hello slot=inputEl>

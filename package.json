@@ -2,10 +2,31 @@
   "name": "be-prop-slotting",
   "version": "0.0.0",
   "description": "Transfer values from light children to host.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "main": "be-prop-slotting.js",
+  "module": "be-prop-slotting.js",
+  "keywords": [
+    "web components",
+    "web component",
+    "custom elements",
+    "custom element",
+    "slot",
+    "slots"
+  ],
+  "dependencies": {
+    "be-enhanced": "0.0.55",
+    "be-hive": "0.0.123",
+    "trans-render": "0.0.707",
+    "xtal-element": "0.0.579"
   },
-  "author": "",
+  "devDependencies": {
+    "@playwright/test": "1.39.0",
+    "may-it-serve": "0.0.6"
+  },
+  "scripts": {
+    "serve": "node node_modules/may-it-serve",
+    "test": "playwright test",
+    "update": "ncu -u && npm install"
+  },
+  "author": "Bruce B. Anderson <anderson.bruce.b@gmail.com>",
   "license": "MIT"
 }
