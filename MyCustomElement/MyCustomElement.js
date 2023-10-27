@@ -1,4 +1,4 @@
-import '../MyPeerElement/MyPeerElement.js';
+const html = String.raw;
 export class MyCustomElement extends HTMLElement {
     #isVegetarian;
     get isVegetarian() {
@@ -25,9 +25,10 @@ export class MyCustomElement extends HTMLElement {
         this.attachShadow({ mode: 'open' });
     }
     connectedCallback() {
-        this.shadowRoot.innerHTML = String.raw `
-        <div slot=test>
-        </div>
+        this.shadowRoot.innerHTML = html `
+        <div id=age></div>
+        <div id=isVegetarian></div>
+        <slot name=test></slot>
         <be-hive></be-hive>
         `;
     }
