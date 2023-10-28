@@ -28,7 +28,7 @@ export class MyCustomElement extends HTMLElement {
         this.shadowRoot.innerHTML = html `
         <div id=age></div>
         <div id=isVegetarian></div>
-        <slot name=test></slot>
+        <slot name=test be-prop-slotting></slot>
         <be-hive></be-hive>
         `;
     }

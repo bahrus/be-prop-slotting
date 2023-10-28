@@ -7,13 +7,13 @@
     <title>Document</title>
 </head>
 <body>
-    <my-custom-element itemscope>
+    <my-custom-element-1-a itemscope>
+        <a itemprop=someStringProp slot=test href=https://cnn.com>This is CNN</a>
         <input name=isVegetarian slot=test>
         <link itemprop=isVegetarian slot=test href=https://schema.org/True>
         <meta itemprop=age content=12 slot=test be-value-added='as number.'>
-    </my-custom-element>
+    </my-custom-element-1-a>
 
-    </my-custom-element>
     <script type=importmap>
         {
             "imports": {
@@ -25,7 +25,7 @@
         }
     </script>
     <script type=module>
-        import '../MyCustomElement/MyCustomElement.js';
+        import '../MyCustomElement1A/MyCustomElement-1-a.js';
     </script>
 </body>
 </html>

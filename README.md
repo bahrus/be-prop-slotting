@@ -5,14 +5,14 @@ Transfer values from light children to host.
 ## Example 1a [TODO]
 
 ```html
-<my-custom-element itemscope>
+<my-custom-element-1-a itemscope>
         #shadow
             <slot name=test be-prop-slotting></slot>
     <a itemprop=someStringProp slot=test href=https://cnn.com>This is CNN</a>
     <input type=checkbox name=isHappy slot=test>
     <link itemprop=isVegetarian slot=test href=https://schema.org/True>
     <meta itemprop=age content=12 slot=test be-value-added='as number.'>
-</my-custom-element>
+</my-custom-element-1-a>
 ```
 
 ... sets oMyCustomElement's someStringProp property to https://cnn.com at the moment when the hyperlink is slotted, and keeps the properties in sync. Likewise with isHappy, isVegetarian, age. 

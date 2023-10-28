@@ -10,7 +10,8 @@
 	},
 	"files":[
 		"be-prop-slotting.ts",
-		"MyCustomElement/MyCustomElement.ts"
+		"MyCustomElement1A/MyCustomElement-1-a.ts",
+		"MyCustomElement1B/MyCustomElement-1-b.ts"
 	],
 	"exclude":[
 		"node_modules"

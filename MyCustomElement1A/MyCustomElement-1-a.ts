@@ -1,5 +1,5 @@
 const html = String.raw;
-export class MyCustomElement extends HTMLElement{
+export class MyCustomElement1A extends HTMLElement{
     #isVegetarian: boolean | undefined;
     get isVegetarian(){
         return this.#isVegetarian;
@@ -29,10 +29,10 @@ export class MyCustomElement extends HTMLElement{
         this.shadowRoot!.innerHTML = html `
         <div id=age></div>
         <div id=isVegetarian></div>
-        <slot name=test></slot>
+        <slot name=test be-prop-slotting></slot>
         <be-hive></be-hive>
         `;
     }
 }
 
-customElements.define('my-custom-element', MyCustomElement);
+customElements.define('my-custom-element-1-a', MyCustomElement1A);
