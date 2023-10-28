@@ -13,7 +13,15 @@
         <link itemprop=isVegetarian slot=test href=https://schema.org/True>
         <meta itemprop=age content=12 slot=test be-value-added='as number.'>
     </my-custom-element-1-a>
-
+    <button onclick="addItem()">AddItem</button>
+    <script>
+        function addItem(){
+            const inp = document.createElement('input');
+            inp.name = 'hello';
+            inp.slot = 'test'
+            document.querySelector('my-custom-element-1-a').appendChild(inp);
+        }
+    </script>
     <script type=importmap>
         {
             "imports": {
@@ -26,6 +34,7 @@
     </script>
     <script type=module>
         import '../MyCustomElement1A/MyCustomElement-1-a.js';
+        import '../be-prop-slotting.js';
     </script>
 </body>
 </html>

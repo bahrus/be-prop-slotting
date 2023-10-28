@@ -1,5 +1,5 @@
 const html = String.raw;
-export class MyCustomElement extends HTMLElement{
+export class MyCustomElement1B extends HTMLElement{
     #isVegetarian: boolean | undefined;
     get isVegetarian(){
         return this.#isVegetarian;
@@ -35,4 +35,4 @@ export class MyCustomElement extends HTMLElement{
     }
 }
 
-customElements.define('my-custom-element', MyCustomElement);
+customElements.define('my-custom-element-1-b', MyCustomElement1B);

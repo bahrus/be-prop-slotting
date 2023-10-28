@@ -24,7 +24,8 @@ export type POA = [PAP | undefined, ActionOnEventConfigs<PAP, Actions>];
 export interface Actions{
     onCamelized(self: this): ProPAP;
     hydrate(self: this): POA;
-    getProps(self: this): PAP;
+    getProps(self: this, e?: Event): ProPAP;
+    noAttrs(self: this): ProPAP;
 }
 
 export interface PropSlotRule{

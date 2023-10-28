@@ -1,12 +1,21 @@
 import { BE, propDefaults, propInfo } from 'be-enhanced/BE.js';
 import { XE } from 'xtal-element/XE.js';
 import { register } from 'be-hive/register.js';
+import { getDefaultRemoteRule, getDefaultSignalInfo } from 'be-linked/getDefaultSignalInfo.js';
+import { getRemoteEl } from 'be-linked/getRemoteEl.js';
+import { getSignalVal } from 'be-linked/getSignalVal.js';
 export class BePropSlotting extends BE {
+    #hydrated = new WeakSet();
     static get beConfig() {
         return {
             parse: true,
             parseAndCamelize: true,
             isParsedProp: 'isParsed'
+        };
+    }
+    async noAttrs(self) {
+        return {
+            propSlotRules: []
         };
     }
     async onCamelized(self) {
@@ -26,12 +35,28 @@ export class BePropSlotting extends BE {
             { getProps: { on: 'slotchange', of: enhancedElement, doInit: true } }
         ];
     }
-    getProps(self) {
+    async getProps(self, e) {
         const { propSlotRules, enhancedElement } = self;
-        const assignedNodes = enhancedElement.assignedNodes();
-        for (const assignedNode of assignedNodes) {
-            for (const deslotRule of propSlotRules) {
-            }
+        const assignedElements = enhancedElement.assignedElements();
+        console.log({ assignedElements, e });
+        for (const assignedElement of assignedElements) {
+            if (this.#hydrated.has(assignedElement))
+                continue;
+            this.#hydrated.add(assignedElement);
+            const remoteRule = getDefaultRemoteRule(assignedElement);
+            const { remoteProp, remoteType } = remoteRule;
+            const remoteEl = await getRemoteEl(enhancedElement, remoteType, remoteProp);
+            const lightChildSignalInfo = getDefaultSignalInfo(assignedElement);
+            const { eventTarget, type, signalRef } = lightChildSignalInfo;
+            const fn = () => {
+                //TODO:  this is creating a difficult to garbage collect reference to remoteEl, eventTarget
+                const srcVal = getSignalVal(signalRef);
+                remoteEl[remoteProp] = srcVal;
+            };
+            eventTarget.addEventListener(type, e => {
+                fn();
+            });
+            fn();
         }
         return { resolved: true };
     }
@@ -50,6 +75,10 @@ const xe = new XE({
             ...propInfo,
         },
         actions: {
+            noAttrs: {
+                ifAllOf: ['isParsed'],
+                ifNoneOf: ['of', 'Of']
+            },
             onCamelized: {
                 ifAllOf: ['isParsed'],
                 ifAtLeastOneOf: ['of', 'Of']
