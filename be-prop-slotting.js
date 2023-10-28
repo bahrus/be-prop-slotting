@@ -47,7 +47,7 @@ export class BePropSlotting extends BE {
             this.#hydrated.add(assignedElement);
             const remoteProp = getRemoteProp(assignedElement);
             const remoteEl = await getRemoteEl(enhancedElement, '/', remoteProp);
-            const lightChildSignal = await getLocalSignal(assignedElement);
+            const lightChildSignal = await getLocalSignal(assignedElement, true);
             const { signal, type } = lightChildSignal;
             const fn = () => {
                 //TODO:  this is creating a difficult to garbage collect reference to remoteEl, eventTarget
