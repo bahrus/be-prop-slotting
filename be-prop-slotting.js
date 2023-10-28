@@ -1,13 +1,17 @@
 import { BE, propDefaults, propInfo } from 'be-enhanced/BE.js';
 import { XE } from 'xtal-element/XE.js';
 import { register } from 'be-hive/register.js';
-//import {getDefaultRemoteRule, getDefaultSignalInfo} from 'be-linked/getDefaultSignalInfo.js';
 import { getRemoteEl } from 'be-linked/getRemoteEl.js';
 import { getSignalVal } from 'be-linked/getSignalVal.js';
 import { getRemoteProp, getLocalSignal } from 'be-linked/defaults.js';
-//import { RemoteRule } from './be-linked/types';
 export class BePropSlotting extends BE {
     #hydrated = new WeakSet();
+    #abortControllers = [];
+    detach(detachedElement) {
+        for (const ac of this.#abortControllers) {
+            ac.abort();
+        }
+    }
     static get beConfig() {
         return {
             parse: true,
@@ -54,9 +58,11 @@ export class BePropSlotting extends BE {
                 const srcVal = getSignalVal(signal);
                 remoteEl[remoteProp] = srcVal;
             };
+            const ab = new AbortController();
+            this.#abortControllers.push(ab);
             signal.addEventListener(type, e => {
                 fn();
-            });
+            }, { signal: ab.signal });
             fn();
         }
         return { resolved: true };

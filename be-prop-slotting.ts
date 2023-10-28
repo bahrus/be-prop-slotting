@@ -3,14 +3,18 @@ import {BEConfig} from 'be-enhanced/types';
 import {XE} from 'xtal-element/XE.js';
 import {Actions, AllProps, AP, PAP, ProPAP, POA, PropSlotRule} from './types';
 import {register} from 'be-hive/register.js';
-//import {getDefaultRemoteRule, getDefaultSignalInfo} from 'be-linked/getDefaultSignalInfo.js';
 import {getRemoteEl} from 'be-linked/getRemoteEl.js';
 import {getSignalVal} from 'be-linked/getSignalVal.js';
 import {getRemoteProp, getLocalSignal} from 'be-linked/defaults.js';
-//import { RemoteRule } from './be-linked/types';
 
 export class BePropSlotting extends BE<AP, Actions, HTMLSlotElement> implements Actions{
     #hydrated: WeakSet<Element> = new WeakSet();
+    #abortControllers: Array<AbortController>  = [];
+    detach(detachedElement: Element): void {
+        for(const ac of this.#abortControllers){
+            ac.abort();
+        }
+    }
     static override get beConfig(){
         return {
             parse: true,
@@ -62,9 +66,11 @@ export class BePropSlotting extends BE<AP, Actions, HTMLSlotElement> implements 
                 const srcVal = getSignalVal(signal);
                 (<any>remoteEl)[remoteProp] = srcVal;
             }
+            const ab = new AbortController();
+            this.#abortControllers.push(ab);
             signal.addEventListener(type, e => {
                 fn();
-            });
+            }, {signal: ab.signal});
             fn();
         }
         return {resolved: true};
