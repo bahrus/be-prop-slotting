@@ -45,11 +45,6 @@ export class BePropSlotting extends BE {
             if (this.#hydrated.has(assignedElement))
                 continue;
             this.#hydrated.add(assignedElement);
-            // const remoteRule : RemoteRule = {
-            //     remoteProp: getRemoteProp(assignedElement),
-            //     remoteType: '/'
-            // };// = getDefaultRemoteRule(assignedElement);
-            //const {remoteProp, remoteType} = remoteRule;
             const remoteProp = getRemoteProp(assignedElement);
             const remoteEl = await getRemoteEl(enhancedElement, '/', remoteProp);
             const lightChildSignal = await getLocalSignal(assignedElement);
