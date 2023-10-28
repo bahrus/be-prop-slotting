@@ -27,6 +27,7 @@ Transfer values from light children to host.
             <slot name=test be-prop-slotting='
                 //sets host's someOtherProp to the light child's someStringProp href value. 
                 of some string prop passed to some other string prop.
+                //sets oPeerElement's isAbsolutelyGrateful property to value of isVegetarian from light child.
                 Of is vegetarian passed to -is-absolutely-grateful.
             '></slot>
     <a itemprop=someStringProp slot=test href=https://cnn.com>This is CNN</a>
