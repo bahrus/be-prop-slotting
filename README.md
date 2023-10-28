@@ -24,13 +24,8 @@ Transfer values from light children to host.
 <my-custom-element itemscope>
         #shadow
             <peer-element -is-absolutely-grateful></peer-element>
-            <slot name=test be-prop-slotting='
-                //sets host's someOtherProp to the light child's someStringProp href value. 
-                of some string prop passed to some other string prop.
-                //sets oPeerElement's isAbsolutelyGrateful property to value of isVegetarian from light child.
-                Of is vegetarian passed to -is-absolutely-grateful.
-            '></slot>
-    <a itemprop=someStringProp slot=test href=https://cnn.com>This is CNN</a>
+            <slot name=test -is-happy=isAbsolutelyGrateful be-prop-slotting></slot>
+    <a itemprop=someOtherStringProp slot=test -slot-prop=someStringProp href=https://cnn.com>This is CNN</a>
     <input type=checkbox name=isHappy slot=test>
     <link itemprop=isVegetarian slot=test href=https://schema.org/True>
     <meta itemprop=age content=12 slot=test be-value-added='as number.'>
