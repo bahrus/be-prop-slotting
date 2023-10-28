@@ -20,6 +20,16 @@ export class MyCustomElement1A extends HTMLElement {
         if (div !== null && div !== undefined)
             div.textContent = '' + nv;
     }
+    #someStringProp = '';
+    get someStringProp() {
+        return this.#someStringProp;
+    }
+    set someStringProp(nv) {
+        this.#someStringProp = nv;
+        const div = this.shadowRoot?.querySelector('#someStringProp');
+        if (div !== null && div !== undefined)
+            div.textContent = '' + nv;
+    }
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
@@ -28,6 +38,7 @@ export class MyCustomElement1A extends HTMLElement {
         this.shadowRoot.innerHTML = html `
         <div id=age></div>
         <div id=isVegetarian></div>
+        <div id=someStringProp></div>
         <slot name=test be-prop-slotting></slot>
         <be-hive></be-hive>
         `;

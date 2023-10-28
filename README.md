@@ -1,8 +1,8 @@
-# be-prop-slotting [TODO]
+# be-prop-slotting [WIP]
 
 Transfer values from light children to host.
 
-## Example 1a [TODO]
+## Example 1a
 
 ```html
 <my-custom-element-1-a itemscope>
