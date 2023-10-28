@@ -6,8 +6,8 @@ Transfer values from light children to host.
 
 ```html
 <my-custom-element itemscope>
-    #shadow
-        <slot name=test be-prop-slotting></slot>
+        #shadow
+            <slot name=test be-prop-slotting></slot>
     <a itemprop=someStringProp slot=test href=https://cnn.com>This is CNN</a>
     <input type=checkbox name=isHappy slot=test>
     <link itemprop=isVegetarian slot=test href=https://schema.org/True>
@@ -22,13 +22,13 @@ Transfer values from light children to host.
 
 ```html
 <my-custom-element itemscope>
-    #shadow
-        <peer-element -is-absolutely-grateful></peer-element>
-        <slot name=test be-prop-slotting='
-            //sets host's someOtherProp to the light child's someStringProp href value. 
-            of some string prop to some other string prop.
-            Of is vegetarian to -is-absolutely-grateful.
-        '></slot>
+        #shadow
+            <peer-element -is-absolutely-grateful></peer-element>
+            <slot name=test be-prop-slotting='
+                //sets host's someOtherProp to the light child's someStringProp href value. 
+                of some string prop passed to some other string prop.
+                Of is vegetarian passed to -is-absolutely-grateful.
+            '></slot>
     <a itemprop=someStringProp slot=test href=https://cnn.com>This is CNN</a>
     <input type=checkbox name=isHappy slot=test>
     <link itemprop=isVegetarian slot=test href=https://schema.org/True>
@@ -38,7 +38,7 @@ Transfer values from light children to host.
 
 
 
-... same as Example 1a, but now it update's oMyCustomElement's url property.
+... same as Example 1a, but now we specify non default places to pass property value to.
 
 ## Example 2 [TODO]
 
@@ -46,7 +46,7 @@ Transfer values from light children to host.
 <my-custom-element>
     #shadow
         <slot name=inputEl be-prop-slotting='
-            of @ my input element : (*) to input element.
+            of new weak ref ( @ my input element ) passed to input element.
         '></slot>
     <input name=myInput slot=inputEl type=url>
 </my-custom-element>
