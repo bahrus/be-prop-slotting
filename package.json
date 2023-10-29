@@ -1,6 +1,6 @@
 {
   "name": "be-prop-slotting",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Transfer values from light children to host.",
   "main": "be-prop-slotting.js",
   "module": "be-prop-slotting.js",
